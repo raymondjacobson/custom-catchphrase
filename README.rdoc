@@ -6,7 +6,7 @@ Feel free to help Daniela and CARECEN out with a donation: http://www.active.com
 
 Tech: Ruby on Rails, Twitter Bootstrap, SASS, JavaScript/CoffeeScript
 
-:
+Up and running:
   git clone https://github.com/raymondjacobson/custom-catchphrase.git
   cd custom-catchphrase
   bundle install
