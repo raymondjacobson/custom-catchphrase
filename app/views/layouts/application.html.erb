@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Catchphrase</title>
+  <title><%=full_title()%></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="container-narrow">
+		<div class="masthead">
+			<ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <% if user_signed_in? %>
+          <% else %>
+          	<li><%= link_to "Sign in", new_user_session_path %></li>
+          <% end %>
+        </ul>
+        <h3 class="muted"><%= link_to "Custom Catch-Phrase", root_path, { :id => "project_anchor" } %></h3>
+		</div>
+		<hr>
 
-<%= yield %>
+		<%= yield %>
 
+		<hr>
+
+    <div class="footer">
+      <p>Built by <a target="_blank" href="http://raymondjacobson.com">
+      	Raymond Jacobson</a></p>
+      <p>Fork/contribute to the <a target="_blank" href="https://github.com/raymondjacobson/custom-catchphrase"/>code</a></p>
+    </div>
+
+	</div>
 </body>
 </html>
