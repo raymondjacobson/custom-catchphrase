@@ -1,9 +1,12 @@
 module ApplicationHelper
-	def full_title()
+	def full_title(current_title)
+		base_title = "Custom Catch-Phrase"
 		if user_signed_in?
-			"Catch Phrase | #{current_user.email}"
+			"#{base_title} | #{current_user.email}"
+		elsif !current_title.empty?
+			"#{base_title} | #{current_title}"
 		else
-			"Custom Catch Phrase"
+			"#{base_title}"
 		end
 	end
 end

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%=full_title()%></title>
+  <title><%=full_title(yield(:title))%></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -9,19 +9,9 @@
 <body>
 	<div class="container-narrow">
 		<div class="masthead">
-			<ul class="nav nav-pills pull-right">
-          <li class="active"><%= link_to "Home", root_path %></li>
-          <li><%= link_to "About", static_pages_about_path %></li>
-          <% if user_signed_in? %>
-          <% else %>
-          	<li><%= link_to "Sign in", new_user_session_path %></li>
-          	<li><%= link_to "Register", new_user_registration_path %></li>
-          <% end %>
-        </ul>
-        <h3 class="muted"><%= link_to "Custom Catch-Phrase", root_path, { :id => "project_anchor" } %></h3>
+			<%= render 'layouts/nav' %>
 		</div>
 		<hr>
-
 		<%= yield %>
 
 		<hr>

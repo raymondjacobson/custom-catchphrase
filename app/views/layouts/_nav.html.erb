@@ -1,0 +1,33 @@
+<ul class="nav nav-pills pull-right">
+
+	<% if yield(:title) == "Home" %>
+		<li class="active"><%= link_to "Home", root_path %></li>	
+	<% else %>
+		<li><%= link_to "Home", root_path %></li>	
+	<% end %>
+
+	<% if yield(:title) == "About" %>
+		<li class="active"><%= link_to "About", static_pages_about_path %></li>
+	<% else %>
+		<li><%= link_to "About", static_pages_about_path %></li>
+	<% end %>
+
+  <% if user_signed_in? %>
+  	<li>Welcome, <%= current_user.email %></li>
+  <% else %>
+
+  	<% if yield(:title) == "Sign in" %>
+  		<li class="active"><%= link_to "Sign in", new_user_session_path %></li>
+  	<% else %>
+  		<li><%= link_to "Sign in", new_user_session_path %></li>
+  	<% end %>
+
+  	<% if yield(:title) == "Register" %>
+  		<li class="active"><%= link_to "Register", new_user_registration_path %></li>
+  	<% else %>
+  		<li><%= link_to "Register", new_user_registration_path %></li>
+  	<% end %>
+
+  <% end %>
+</ul>
+<h3 class="muted"><%= link_to "Custom Catch-Phrase", root_path, { :id => "project_anchor" } %></h3>
