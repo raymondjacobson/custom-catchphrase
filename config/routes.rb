@@ -1,4 +1,7 @@
 Catchphrase::Application.routes.draw do
+  resources :games
+
+
   devise_for :users
 
   get "static_pages/home"
