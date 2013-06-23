@@ -47,6 +47,13 @@ body {
   margin-top: 28px;
 }
 
+/* Custom Layout */
+
+.row-fluid [class*="span"].center, .center {
+	margin: 0 auto !important;
+	float: none;
+}
+
 /* Custom Nav */
 
 #project_anchor {

@@ -13,7 +13,14 @@
 	<% end %>
 
   <% if user_signed_in? %>
-  	<li>Welcome, <%= current_user.email %></li>
+    <% if yield(:title).include? "Profile" %>
+  	 <li class="active"><%= link_to current_user.email, root_path%></a></li>
+    <% else %>
+     <li><%= link_to current_user.email, root_path%></a></li>
+    <% end %>
+
+    <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></a></li>
+
   <% else %>
 
   	<% if yield(:title) == "Sign in" %>
