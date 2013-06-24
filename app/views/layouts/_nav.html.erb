@@ -13,10 +13,10 @@
 	<% end %>
 
   <% if user_signed_in? %>
-    <% if yield(:title).include? "Profile" %>
-  	 <li class="active"><%= link_to current_user.email, root_path%></a></li>
+    <% if yield(:title).include? "Games" %>
+  	 <li class="active"><%= link_to current_user.email, games_path%></a></li>
     <% else %>
-     <li><%= link_to current_user.email, root_path%></a></li>
+     <li><%= link_to current_user.email, games_path %></a></li>
     <% end %>
 
     <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></a></li>
