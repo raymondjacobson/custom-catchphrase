@@ -1,24 +1,43 @@
 <% provide(:title, "#{current_user}'s Games") %>
-<h1>Listing games</h1>
+<div class="row-fluid">
+<div class="center span10">
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h3 class="text-center">Your Catch Phrase Games</h3>
+<p class="text-center"><%= link_to 'New Game', new_game_path, { :class => "btn btn-success"} %></p>
 
-<% @games.each do |game| %>
-  <tr>
-    <td><%= game.name %></td>
-    <td><%= link_to 'Show', game %></td>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
-    <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<dl class="dl-horizontal">
+  <% @games.each do |game| %>
+  <dt>
+    <p class="lead"><%= link_to game.name, game %></p>
+  </dt>
+  <dd>
+    <p>
+      <% phrases = game.phrases.split(pattern=', ') %>
+      <% cap = 15 %>
+      <% if phrases.length < cap %>
+        <% phrases[0..phrases.length-2].each do |phrase| %>
+          <%= phrase %>,
+        <% end %>
+        <%= phrases[phrases.length-1] %>
+      <% else %>
+        <% phrases[0..cap].each do |phrase| %>
+          <%= phrase %>,
+        <% end %>
+        and <%= phrases.length - cap - 1%> more
+      <% end %>
+      
+    </p>
+  </dd>
+  <dd>
+    <p>
+      <%= link_to 'Edit', edit_game_path(game) %>
+      <%= link_to 'Delete', game, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+  </dd>
 
-<br />
+  <% end %>
+</dl>
 
-<%= link_to 'New Game', new_game_path %>
+
+</div>
+</div>
