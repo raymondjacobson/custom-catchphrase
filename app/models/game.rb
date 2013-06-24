@@ -7,14 +7,13 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
+#  phrases    :text
 #
 
 class Game < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :phrases
 
   belongs_to :user
-
-  has_many :phrases, dependent: :destroy
 
   validates :user_id, presence: true
   
