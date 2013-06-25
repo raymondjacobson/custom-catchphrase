@@ -6,6 +6,7 @@
 #  text       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  game_id    :integer
 #
 
 require 'test_helper'
