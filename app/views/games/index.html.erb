@@ -11,6 +11,9 @@
     <p class="lead"><%= link_to game.name, game %></p>
   </dt>
   <dd>
+    <% if game.phrases == nil %>
+    <p>This game currently has no phrases.</p>
+    <% else %>
     <p>
       <% phrases = game.phrases.split(pattern=', ') %>
       <% cap = 15 %>
@@ -27,6 +30,7 @@
       <% end %>
       
     </p>
+    <% end %>
   </dd>
   <dd>
     <p>
