@@ -12,9 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :placeholder => "Name" %>
   </div>
+  <div class="field">
+      <%= f.text_area(:phrases, :placeholder => "Words") %>
+      <small>Comma separated (e.g. Thomas Jefferson, Bill of Rights)</small>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
