@@ -1,5 +1,15 @@
-<% provide(:title, "#{current_user}'s Games") %>
-<p id="notice"><%= notice %></p>
+<% provide(:title, "#{current_user}:#{@game.name}") %>
+<h2 class="text-center"><%= @game.name %></h2>
+
+<% phrases = @game.phrases.split(pattern=', ').shuffle %>
+<div class="text-center">
+<a id="startstop" href="#" onclick="startstop" class="btn btn-large btn-success">Start/Stop</a>
+
+<h1 class="text-center phrase">Phrase here</h1>
+
+<a id="next" href="#" onclick="next" class="btn btn-large btn-info">Next Phrase</a>
+</div>
+
 
 <p>
   <b>Name:</b>
@@ -7,8 +17,7 @@
 </p>
 <p>
   <b>Phrases:</b>
-  <%= @game.phrases %>
+  <%= phrases %>
 </p>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<%= link_to 'Add phrases', edit_game_path(@game) %>
