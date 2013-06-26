@@ -11,7 +11,7 @@
     <p class="lead"><%= link_to game.name, game %></p>
   </dt>
   <dd>
-    <% if game.phrases == nil %>
+    <% if game.phrases == nil || game.phrases.length == 0 %>
     <p>This game currently has no phrases.</p>
     <% else %>
     <p>
