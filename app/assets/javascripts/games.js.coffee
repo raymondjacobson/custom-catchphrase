@@ -18,7 +18,11 @@ $ ->
 		$('#next').click ->
 	 		next()
 		$(document).keypress (e) ->
-			start() if e.keyCode == 115
+			if e.keyCode == 115
+				if window.gameon
+					stop()
+				else
+					start()
 			next() if e.keyCode == 32
 
 start = () ->
