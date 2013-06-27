@@ -1,14 +1,19 @@
-<% provide(:title, "#{current_user}'s Games") %>
-<p id="notice"><%= notice %></p>
+<% provide(:title, "#{current_user}:#{@game.name}") %>
+<div id="game">
+<h2 class="text-center">You're playing <%= link_to @game.name, edit_game_path(@game) %></h2>
 
-<p>
-  <b>Name:</b>
-  <%= @game.name %>
-</p>
-<p>
-  <b>Phrases:</b>
-  <%= @game.phrases %>
-</p>
+<script type="text/javascript">
+	// push the rails object to the coffee script
+	phrases = '<%= @game.phrases %>';
+</script>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<div class="text-center">
+<a id="startstop" href="#" onclick="startstop" class="btn btn-large btn-success">Start Playing</a><p><small>or press s</small></p>
+
+<h1 class="text-center" id="phrase">Press start to play</h1>
+
+<a id="next" href="#" onclick="next" class="btn btn-large btn-info">Next Phrase</a>
+<p><small>or press the space bar</small></p>
+</div>
+
+</div>

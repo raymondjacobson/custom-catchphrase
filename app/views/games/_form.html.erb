@@ -16,10 +16,10 @@
   </div>
   <div class="field">
       <%= f.text_area(:phrases, :placeholder => "Words") %>
-      <small>Comma separated (e.g. Thomas Jefferson, Bill of Rights)</small>
   </div>
+  <small>Comma separated (e.g. Thomas Jefferson, Bill of Rights)</small>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', :class => 'btn btn-success' %>
   </div>
 <% end %>
