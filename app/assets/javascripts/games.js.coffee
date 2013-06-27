@@ -29,6 +29,8 @@ start = () ->
 	window.gameon = true
 	$('#phrase').html window.phrases_arr[window.place]
 	toggleStartStop("start")
+	time = getBuzzerTime()
+	setTimeout timesUp, time
 
 next = () ->
 	if window.gameon
@@ -43,6 +45,14 @@ stop = () ->
 	window.phrases_arr = shuffle(window.phrases_arr)
 	$('#phrase').html "Press start to play"
 	toggleStartStop("stop")
+
+getBuzzerTime = () ->
+	random = Math.random() * 10000
+	# time = 30000 + random
+	time = 3 + random
+
+timesUp = () ->
+	$('#phrase').html "Time's up!"
 
 # Fisher yates shuffle
 shuffle = (a) ->
