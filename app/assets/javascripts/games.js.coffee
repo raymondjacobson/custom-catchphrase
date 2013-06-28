@@ -25,6 +25,7 @@ $ ->
 					start()
 			next() if e.keyCode == 32
 
+
 start = () ->
 	window.gameon = true
 	$('#phrase').html window.phrases_arr[window.place]
@@ -64,6 +65,16 @@ shuffle = (a) ->
     [a[i], a[j]] = [a[j], a[i]]
   # Return the shuffled array.
   a
+
+ playBeep = () ->
+ 	beep = $('#beep')
+ 	beep.Play()
+
+playBeeping = () ->
+	# Set interval function
+	# If interval ends call timeUp
+	# Second interval calls beeps on frequency based on first interval
+	# start play beeping in start()
 
 toggleStartStop = (s) ->
 	if s == "start"
