@@ -31,7 +31,8 @@ start = () ->
 	$('#phrase').html window.phrases_arr[window.place]
 	toggleStartStop("start")
 	time = getBuzzerTime()
-	setTimeout timesUp, time
+	#setTimeout timesUp, time
+	playBeeping time
 
 next = () ->
 	if window.gameon
@@ -52,8 +53,10 @@ getBuzzerTime = () ->
 	# time = 30000 + random
 	time = 3 + random
 
-timesUp = () ->
+timesUp = (beeping) ->
 	$('#phrase').html "Time's up!"
+	clearInterval beeping
+	stop()
 
 # Fisher yates shuffle
 shuffle = (a) ->
@@ -66,11 +69,14 @@ shuffle = (a) ->
   # Return the shuffled array.
   a
 
- playBeep = () ->
- 	beep = $('#beep')
- 	beep.Play()
+playBeep = () ->
+ 	beep = $('#beep-sound')
+ 	beep[0].play()
 
-playBeeping = () ->
+playBeeping = (time) ->
+	beeping = setInterval(playBeep, 10)
+	setTimeout ( -> timesUp beeping), time
+		# setTimeout stop_beeping, 1000
 	# Set interval function
 	# If interval ends call timeUp
 	# Second interval calls beeps on frequency based on first interval
