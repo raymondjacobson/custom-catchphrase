@@ -6,6 +6,12 @@ $ ->
 	window.phrases_arr = phrases.split ", "
 	window.phrases_arr = shuffle(window.phrases_arr)
 
+	# Speed up
+	window.speed_up1 = false
+	window.speed_up2 = false
+	window.speed_up3 = false
+	window.speed_up4 = false
+
 	if $('#game') # if we're actually playing the game
 		$('#startstop').click ->
 			if window.gameon
@@ -23,7 +29,7 @@ $ ->
 			next() if e.keyCode == 32
 
 ###################################
-# Global-esqe funcitons
+# Global-esqe functions
 ###################################
 
 # Fisher yates shuffle
@@ -82,7 +88,7 @@ next = () ->
 
 getBuzzerTime = () ->
 	random = Math.random() * 10000
-	time = 30000 + random
+	time = 130000 + random
 
 timesUp = () ->
 	window.gameon = false
@@ -101,12 +107,35 @@ playBuzzer = () ->
 	buzzer[0].play()
 
 playBeeping = (time) ->
-	beepingRate = time/20
-	window.beeping = setInterval(( -> incrementingInterval beepingRate), beepingRate)
+	beepingRate = 3000
+	#console.log time
+	window.expired_time = new Date().getTime() + time
+	#console.log window.expired_time
+	window.beeping = setInterval(( -> incrementingInterval beepingRate, time), beepingRate)
 	window.timesUp = setTimeout timesUp, time
 
-incrementingInterval = (beepingRate) ->
+incrementingInterval = (beepingRate, time) ->
 	clearInterval window.beeping
-	beepingRate = beepingRate/(1.05)
+	curTime = new Date().getTime()
+	timeLeft = window.expired_time - curTime
+	console.log (timeLeft)
+	if (timeLeft < (time*2/3) && !window.speed_up1)
+		beepingRate = beepingRate/3
+		console.log 'speed up'
+		window.speed_up1 = true
+	if (timeLeft < (time*1/3) && !window.speed_up2)
+		beepingRate = beepingRate/3
+		console.log 'speed up'
+		window.speed_up2 = true
+	if (timeLeft < (time*1/5) && !window.speed_up3)
+		beepingRate = beepingRate/3
+		console.log 'speed up'
+		window.speed_up3 = true
+	if (timeLeft < (time*1/10) && !window.speed_up4)
+		beepingRate = beepingRate/10
+		console.log 'speed up'
+		window.speed_up4 = true
 	playBeep()
-	window.beeping = setInterval(( -> incrementingInterval beepingRate), beepingRate)
+	window.beeping = setInterval(( -> incrementingInterval beepingRate, time), beepingRate)
+
+
