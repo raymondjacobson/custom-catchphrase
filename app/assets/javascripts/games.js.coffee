@@ -108,9 +108,7 @@ playBuzzer = () ->
 
 playBeeping = (time) ->
 	beepingRate = 3000
-	#console.log time
 	window.expired_time = new Date().getTime() + time
-	#console.log window.expired_time
 	window.beeping = setInterval(( -> incrementingInterval beepingRate, time), beepingRate)
 	window.timesUp = setTimeout timesUp, time
 
@@ -118,22 +116,17 @@ incrementingInterval = (beepingRate, time) ->
 	clearInterval window.beeping
 	curTime = new Date().getTime()
 	timeLeft = window.expired_time - curTime
-	console.log (timeLeft)
 	if (timeLeft < (time*2/3) && !window.speed_up1)
 		beepingRate = beepingRate/2
-		console.log 'speed up'
 		window.speed_up1 = true
 	if (timeLeft < (time*1/3) && !window.speed_up2)
 		beepingRate = beepingRate/2
-		console.log 'speed up'
 		window.speed_up2 = true
 	if (timeLeft < (time*1/5) && !window.speed_up3)
 		beepingRate = beepingRate/2
-		console.log 'speed up'
 		window.speed_up3 = true
 	if (timeLeft < (time*1/10) && !window.speed_up4)
 		beepingRate = beepingRate/10
-		console.log 'speed up'
 		window.speed_up4 = true
 	playBeep()
 	window.beeping = setInterval(( -> incrementingInterval beepingRate, time), beepingRate)
