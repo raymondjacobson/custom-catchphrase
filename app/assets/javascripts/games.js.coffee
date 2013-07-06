@@ -124,11 +124,11 @@ incrementingInterval = (beepingRate, time) ->
 		console.log 'speed up'
 		window.speed_up1 = true
 	if (timeLeft < (time*1/3) && !window.speed_up2)
-		beepingRate = beepingRate/3
+		beepingRate = beepingRate/2
 		console.log 'speed up'
 		window.speed_up2 = true
 	if (timeLeft < (time*1/5) && !window.speed_up3)
-		beepingRate = beepingRate/3
+		beepingRate = beepingRate/2
 		console.log 'speed up'
 		window.speed_up3 = true
 	if (timeLeft < (time*1/10) && !window.speed_up4)
